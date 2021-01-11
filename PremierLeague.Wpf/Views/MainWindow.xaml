@@ -6,11 +6,39 @@
         xmlns:viewModels="clr-namespace:PremierLeague.Wpf.ViewModels"
         xmlns:wpf="clr-namespace:PremierLeague.Wpf"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
-        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}"
         mc:Ignorable="d"
         WindowStyle="ThreeDBorderWindow" BorderThickness="2" 
         BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
-        Title="Premierleague" Height="650" Width="750">
+        Title="Premierleague" Height="620" Width="590">
 
-   
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid ItemsSource="{Binding Path=Teams}" SelectedItem="SelectedTeam"
+                  AutoGenerateColumns="False" Grid.Row="0" Grid.Column="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="RANK" Binding="{Binding Path=Rank}"/>
+                <DataGridTextColumn Header="NAME" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="MATCHES" Binding="{Binding Path=Matches}"/>
+                <DataGridTextColumn Header="WON" Binding="{Binding Path=Won}"/>
+                <DataGridTextColumn Header="DRAWN" Binding="{Binding Path=Drawn}"/>
+                <DataGridTextColumn Header="LOST" Binding="{Binding Path=Lost}"/>
+                <DataGridTextColumn Header="+" Binding="{Binding Path=GoalsPlus}"/>
+                <DataGridTextColumn Header="-" Binding="{Binding Path=GoalsMinus}"/>
+                <DataGridTextColumn Header="+/-" Binding="{Binding Path=GoalsPlusMinus}"/>
+                <DataGridTextColumn Header="POINTS" Binding="{Binding Path=Points}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+            <Button Command="{Binding Path=CmdAddTeam, UpdateSourceTrigger=PropertyChanged}">
+                ADD GAME
+            </Button>
+        </StackPanel>
+    </Grid>
+
 </controls:MetroWindow>
